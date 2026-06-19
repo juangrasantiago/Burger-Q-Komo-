@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burguer Q'Komo?</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --accent: #d94f1e;
+    --accent2: #e8702a;
+    --text: #f0ece4;
+    --text-muted: #888;
+    --border: rgba(217,79,30,0.25);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:15px; line-height:1.6; }
+
+  /* NAV */
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,10,10,0.92); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    padding:0 2rem;
+    display:flex; align-items:center; justify-content:space-between; height:60px;
+  }
+  .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--accent2); letter-spacing:2px; text-decoration: none; }
+  .nav-links { display:flex; gap:1.5rem; list-style:none; }
+  .nav-links a { color:var(--text-muted); text-decoration:none; font-size:13px; letter-spacing:0.5px; transition:color .2s; }
+  .nav-links a:hover { color:var(--accent2); }
+
+  /* HERO */
+  .hero {
+    min-height:90vh; display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:4rem 2rem;
+    background: radial-gradient(ellipse 70% 60% at 50% 60%, rgba(217,79,30,0.12) 0%, transparent 70%), var(--bg);
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(217,79,30,0.03) 60px, rgba(217,79,30,0.03) 61px);
+  }
+  .hero-content { position:relative; z-index:1; max-width:700px; }
+  .hero-eyebrow { font-size:12px; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:1rem; }
+  .hero-title {
+    font-family:'Bebas Neue',sans-serif; font-size:clamp(72px,14vw,140px);
+    line-height:0.9; color:var(--text); letter-spacing:4px;
+  }
+  .hero-title span { color:var(--accent); }
+  .hero-sub { margin-top:1.5rem; font-size:16px; color:var(--text-muted); font-weight:300; letter-spacing:1px; }
+  .hero-info { margin-top:2.5rem; display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; }
+  .hero-info-item { font-size:13px; color:var(--text-muted); }
+  .hero-info-item strong { display:block; color:var(--accent2); font-size:15px; font-weight:500; }
+  .hero-cta { margin-top:2.5rem; }
+  .btn-primary {
+    display:inline-block; background:var(--accent); color:#fff;
+    padding:14px 36px; border-radius:4px; font-size:14px; font-weight:600;
+    text-decoration:none; letter-spacing:1px; text-transform:uppercase;
+    transition:background .2s, transform .15s;
+  }
+  .btn-primary:hover { background:var(--accent2); transform:translateY(-1px); }
+
+  /* MENU */
+  main { max-width:900px; margin:0 auto; padding:4rem 1.5rem 6rem; }
+
+  .category { margin-bottom:4rem; }
+  .category-header {
+    display:flex; align-items:baseline; gap:1rem;
+    border-bottom:1px solid var(--border); padding-bottom:0.75rem; margin-bottom:1.75rem;
+  }
+  .category-title {
+    font-family:'Bebas Neue',sans-serif; font-size:42px; color:var(--accent); letter-spacing:3px;
+  }
+  .category-count { font-size:12px; color:var(--text-muted); letter-spacing:1px; }
+
+  .menu-item {
+    display:grid; grid-template-columns:1fr auto;
+    align-items:start; gap:1rem;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    transition:background .15s;
+  }
+  .menu-item:last-child { border-bottom:none; }
+  .menu-item:hover { background:rgba(217,79,30,0.04); margin:0 -12px; padding-left:12px; padding-right:12px; border-radius:4px; }
+  .item-name { font-weight:500; font-size:14px; color:var(--text); }
+  .item-desc { font-size:12px; color:var(--text-muted); margin-top:3px; line-height:1.5; }
+  .item-price {
+    font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--accent2);
+    letter-spacing:1px; white-space:nowrap;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top:1px solid var(--border); text-align:center;
+    padding:3rem 2rem; color:var(--text-muted); font-size:13px;
+  }
+  footer .f-logo { font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--accent2); letter-spacing:3px; margin-bottom:0.5rem; }
+  footer p { margin-top:0.5rem; }
+
+  @media(max-width:600px) {
+    nav { padding:0 1rem; }
+    .nav-links { display:none; }
+    .hero-title { font-size:clamp(60px,20vw,100px); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Q'Komo?</a>
+  <ul class="nav-links">
+    <li><a href="#para-picar">Para Picar</a></li>
+    <li><a href="#hamburguesas">Hamburguesas</a></li>
+    <li><a href="#kebabs">Kebabs</a></li>
+    <li><a href="#perritos">Perritos</a></li>
+    <li><a href="#gondolitas">Gondolitas</a></li>
+    <li><a href="#baguettes">Baguettes</a></li>
+    <li><a href="#burritos">Burritos</a></li>
+    <li><a href="#sandwiches">Sandwiches</a></li>
+    <li><a href="#infantil">Infantil</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Comida rápida · Los Palacios y Vfca</p>
+    <h1 class="hero-title">BURGUER<br><span>Q'KOMO?</span></h1>
+    <p class="hero-sub">Disfruta de tu mejor bocado</p>
+    <div class="hero-info">
+      <div class="hero-info-item"><strong>95 581 4268</strong>Reservas y pedidos</div>
+      <div class="hero-info-item"><strong>20:00 – 00:00h</strong>Todos los días</div>
+      <div class="hero-info-item"><strong>🛵 Reparto a Domicilio</strong>Disponible</div>
+    </div>
+    <div class="hero-cta"><a href="#para-picar" class="btn-primary">Ver la carta</a></div>
+  </div>
+</section>
+
+<main>
+
+  <!-- ============================================================
+       PARA EDITAR LA CARTA: modifica los datos dentro de cada
+       sección <ul> siguiendo este formato por producto:
+       <li data-price="0,00€">Nombre — descripción</li>
+       ============================================================ -->
+
+  <!-- PARA PICAR -->
+  <section class="category" id="para-picar">
+    <div class="category-header">
+      <h2 class="category-title">Para Picar</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="3,00€">Nuggets de pollo — 6 ud. con salsa BBQ</li>
+      <li data-price="2,00€">Patatas fritas</li>
+      <li data-price="4,90€">Bandeja de patatas</li>
+      <li data-price="2,50€">Patatas deluxe</li>
+      <li data-price="3,80€ / 5,80€">Patatas gratinadas — Pequeña / Grande</li>
+      <li data-price="0,80€">Salsa</li>
+    </ul>
+  </section>
+
+  <!-- HAMBURGUESAS -->
+  <section class="category" id="hamburguesas">
+    <div class="category-header">
+      <h2 class="category-title">Hamburguesas</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="2,60€">Clásica — Ketchup, mostaza, queso cheddar, pepinillo y cebolla</li>
+      <li data-price="3,50€">Cañón — Lechuga, bacon, queso cheddar, cebolla crujiente y BBQ o salsa burguer</li>
+      <li data-price="3,50€">Dacota — Huevo, queso cheddar, cebolla caramelizada y BBQ</li>
+      <li data-price="3,50€">Royal — Lechuga, queso de cabra, cebolla caramelizada y salsa burguer</li>
+      <li data-price="4,20€">Especial — Lechuga, jamón york, huevo, queso, tomate, cebolla, ketchup y mostaza</li>
+      <li data-price="6,00€">Buey 200g — Lechuga, queso cheddar, mostaza, ketchup y mayonesa</li>
+      <li data-price="6,50€">Suiza 200g — Buey, bacon, queso, cebolla caramelizada y salsa nevada</li>
+      <li data-price="7,50€">Bichota (1 carne) — 100% vacuno, pan brioche, bacon, cheddar, pepinillos y salsa Bichota</li>
+      <li data-price="9,50€">Bichota (2 carnes) — 100% vacuno, pan brioche, bacon, cheddar, pepinillos y salsa Bichota</li>
+    </ul>
+  </section>
+
+  <!-- MAC POLLO -->
+  <section class="category" id="macpollo">
+    <div class="category-header">
+      <h2 class="category-title">Mac Pollo</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="3,00€">Simple — Crujiente de pollo, lechuga y mayonesa</li>
+      <li data-price="4,00€">Mac DC — Crujiente de pollo, huevo, queso, cebolla caramelizada y BBQ</li>
+      <li data-price="4,00€">Mac Royal — Crujiente de pollo, queso de cabra, cebolla caramelizada y salsa burguer</li>
+      <li data-price="4,50€">C.B.O. — Crujiente de pollo, bacon, queso cheddar, cebolla crujiente y salsa burguer</li>
+    </ul>
+  </section>
+
+  <!-- KEBABS -->
+  <section class="category" id="kebabs">
+    <div class="category-header">
+      <h2 class="category-title">Kebabs</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="5,00€">Completo — Carne de pollo, lechuga, tomate, cebolla, maíz, zanahoria, queso y salsa yogur o burguer</li>
+      <li data-price="5,50€">Americano — Carne de pollo, lechuga, bacon, huevo, cebolla caramelizada, queso cheddar y BBQ</li>
+    </ul>
+  </section>
+
+  <!-- PERRITOS -->
+  <section class="category" id="perritos">
+    <div class="category-header">
+      <h2 class="category-title">Perritos</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="2,00€">Completo — Ketchup, mostaza, mayonesa y patatas crujientes</li>
+      <li data-price="3,50€">QKomo — Lechuga, salchicha, carne de kebab, cebolla crujiente y salsa yogur</li>
+      <li data-price="3,50€">Nevada — Salsa nevada o BBQ, huevo, bacon, queso cheddar y cebolla frita</li>
+    </ul>
+  </section>
+
+  <!-- GONDOLITAS -->
+  <section class="category" id="gondolitas">
+    <div class="category-header">
+      <h2 class="category-title">Gondolitas</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="2,50€">Simple — Salsa de tomate, orégano, jamón york y queso fundido</li>
+      <li data-price="3,00€">Atún — Salsa de tomate, orégano, jamón york y queso fundido</li>
+      <li data-price="3,20€">Way — Salsa de tomate, orégano, jamón york, salchicha y queso fundido</li>
+      <li data-price="3,50€">Kebab — Salsa de tomate, carne de kebab, cebolla caramelizada y queso fundido</li>
+      <li data-price="3,50€">Carbonara — Salsa carbonara, bacon, cebolla caramelizada y toque de barbacoa</li>
+    </ul>
+  </section>
+
+  <!-- BURRITOS -->
+  <section class="category" id="burritos">
+    <div class="category-header">
+      <h2 class="category-title">Burritos</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="2,40€">Burriperi — Salchicha, ketchup, mostaza, mayonesa y patatas crujientes</li>
+      <li data-price="2,80€">York — Salchicha enrollada con jamón de york, mayonesa y patatas crujientes</li>
+      <li data-price="4,00€">Mac Rap — Pollo empanado, lechuga, bacon, queso, cebolla crujiente y salsa burguer</li>
+    </ul>
+  </section>
+
+  <!-- BAGUETTES Y MONTADITOS -->
+  <section class="category" id="baguettes">
+    <div class="category-header">
+      <h2 class="category-title">Baguettes y Montaditos</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="5€ / 3€">Comanche — Filete de pollo, queso, lechuga, tomate, cebolla crujiente y salsa burguer</li>
+      <li data-price="5€ / 3€">Del Monte — Filete de pollo, queso de cabra y cebolla caramelizada</li>
+      <li data-price="5€ / 3€">Canario — Filete de pollo, pimiento frito, huevo y salsa burguer</li>
+      <li data-price="5€ / 3€">Nevada — Filete de pollo, salsa nevada, pimiento morrón, queso y cebolla caramelizada</li>
+      <li data-price="5,20€ / 3€">5º Elemento — Filete de pollo, lechuga, salsa nevada, huevo, tomate y york</li>
+      <li data-price="5€ / 3€">BBQ — Filete de pollo, bacon, queso, BBQ y cebolla crujiente</li>
+      <li data-price="5€ / 3€">Cubano — Lechuga, huevo, bacon, queso y mayonesa</li>
+      <li data-price="5€ / 3€">Tropical — Pollo desmenuzado, salsa nevada y queso fundido</li>
+      <li data-price="5€ / 3€">Piripi — Filete de lomo, salsa nevada, queso y tomate natural</li>
+      <li data-price="5€ / 3€">Serranito — Filete de pollo o lomo, pimiento frito y jamón serrano</li>
+      <li data-price="5€ / 3€">Monte Rey — Guacamole, filete de pollo, huevo, york, tomate natural</li>
+      <li data-price="5€ / 3€">Kebab — Salsa de tomate, carne de kebab, cebolla caramelizada y queso</li>
+      <li data-price="5€ / 3€">Americano — Carne de kebab, lechuga, queso cheddar, cebolla crujiente y BBQ</li>
+      <li data-price="5€ / 3€">Tortilla — Tortilla de patatas, salsa de tomate, queso fundido y alioli</li>
+    </ul>
+  </section>
+
+  <!-- SANDWICHES -->
+  <section class="category" id="sandwiches">
+    <div class="category-header">
+      <h2 class="category-title">Sandwiches</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="2,20€">Mixto — York y queso</li>
+      <li data-price="2,50€">Ave — Pollo, lechuga y mayonesa</li>
+      <li data-price="3,00€">Cubano — Lechuga, bacon, huevo, queso y mayonesa</li>
+      <li data-price="3,50€">Chicken — Lechuga, filete de pollo, queso, cebolla caramelizada y salsa burguer</li>
+      <li data-price="3,50€">Mexicano — Lechuga, huevo, york, filete de pollo y guacamole</li>
+      <li data-price="4,00€">Especial — Lechuga, pollo, mayonesa, york, huevo y tomate</li>
+      <li data-price="4,00€">Rústico — Lechuga, carne de kebab, pimiento frito, huevo, york, cebolla crujiente y salsa burguer</li>
+    </ul>
+  </section>
+
+  <!-- MENÚ INFANTIL -->
+  <section class="category" id="infantil">
+    <div class="category-header">
+      <h2 class="category-title">Menú Infantil</h2>
+    </div>
+    <ul class="item-list" style="list-style:none;">
+      <li data-price="5,00€">Hamburguesa — Con ketchup, acompañada de patatas y bebida</li>
+      <li data-price="5,00€">Sandwich — Con york y queso, acompañado de patatas y bebida</li>
+      <li data-price="5,00€">Caja de Nuggets — Acompañada de patatas y bebida</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="f-logo">Q'Komo?</div>
+  <p>Disfruta de tu mejor bocado · Todos los días de 20:00 a 00:00h</p>
+  <p style="margin-top:0.5rem;">📞 95 581 4268 · 🛵 Reparto a Domicilio</p>
+</footer>
+
+<script>
+// Renderiza cada <li> del menú como fila nombre + precio
+document.querySelectorAll('.item-list').forEach(ul => {
+  ul.querySelectorAll('li').forEach(li => {
+    const price = li.dataset.price || '';
+    const text = li.textContent.trim();
+    const dashIdx = text.indexOf(' — ');
+    const name = dashIdx !== -1 ? text.slice(0, dashIdx) : text;
+    const desc = dashIdx !== -1 ? text.slice(dashIdx + 3) : '';
+    li.innerHTML = '';
+    li.className = 'menu-item';
+    li.innerHTML = `
+      <div>
+        <div class="item-name">${name}</div>
+        ${desc ? `<div class="item-desc">${desc}</div>` : ''}
+      </div>
+      <span class="item-price">${price}</span>`;
+  });
+});
+</script>
+</body>
+</html>
