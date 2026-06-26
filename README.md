@@ -4,7 +4,7 @@ Web estática para el restaurante de comida rápida **Burguer Q'Komo?**. Desarro
 
 ## 🌐 Demo
 
-🔗 [Ver en Vercel](https://qkomo.vercel.app/#) 
+🔗 [Ver Web](https://qkomo.vercel.app/#) 
 ---
 
 ## 📋 Descripción
@@ -60,10 +60,11 @@ qkomo-web/
 
 <img width="1372" height="914" alt="image" src="https://github.com/user-attachments/assets/cc2215af-2f48-455a-9284-841a67c07c1f" />
 <img width="1373" height="871" alt="image" src="https://github.com/user-attachments/assets/e85377d0-b0c1-449f-a32d-655e4f45ac1a" />
+<img width="1366" height="1073" alt="image" src="https://github.com/user-attachments/assets/eb9cb52b-f9e6-49e1-b08d-3150d4e4c8dc" />
 
 ---
 
 ## 👤 Autor
 
 **Juan Gabriel** — [@juangrasantiago](https://github.com/juangrasantiago)  
-Proyecto de portfolio · 2026
+Proyecto de portafolio · 2026
